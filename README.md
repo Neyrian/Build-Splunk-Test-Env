@@ -1,12 +1,26 @@
-# Purpose
+# Splunk Docker Env Management Toolkit 🛠️
 
-This script aim to easly build a local splunk, and imports logs for tests purposes.
+A robust Bash utility designed to automate the deployment, configuration, and data ingestion workflows for Splunk Enterprise running in Docker. This toolkit is perfect for security researchers, lab builders, and Splunk architects who need to spin up and tear down test environments rapidly.
 
-## Set up
+## ✨ Features
+
+* Interactive Menu System
+
+* Intelligent Log Ingestion: Handles oneshot imports with custom Sourcetypes and Hostnames.
+
+* App Management: Install or update Splunk Apps (.spl, .tar.gz) with a single command.
+
+* History Tracking: Logs every import and app installation to splunk_imports.conf for auditing.
+
+* Manage docker env
+
+## 🚀 Quick Start
 
 1. Get the script from this repo 
 ```bash
 git clone https://github.com/Neyrian/build_splunk_test.git
+cd build_splunk_test
+chmod +x splunk.sh
 ```
 
 2. Ensure that you have docker installed, otherwise run
@@ -14,32 +28,33 @@ git clone https://github.com/Neyrian/build_splunk_test.git
 sudo apt install docker.io
 ```
 
-3. Change the var $workind_dir in the script with your working dir.
+3. Usage
 
-4. Download in your $workind_dir the following splunk apps:
-- Windows TA https://splunkbase.splunk.com/app/742
-- Apache TA https://splunkbase.splunk.com/app/3186
-- Unix and Linux TA https://splunkbase.splunk.com/app/833
-
-5. (Optional) On a windows machine, export Security, Application and System logs in xml and put them in the folder $workind_dir/Windows under xmlwineventlogSecurity.xml, xmlwineventlogApplication.xml, xmlwineventlogSystem.xml.
-
-5. Then run the cheks command
 ```bash
-./splunk.sh checks
+./splunk.sh
 ```
 
-## Usages
 
-You can display the "help" menu by running the script wuthout any args.
-For your first run, you'd run the following commands
-```bash
-./splunk.sh checks
-./splunk.sh create
-./splunk.sh createIndexes
-./splunk.sh importLogs
-./splunk.sh apps
-```
-And your splunk instance should be available on http://localhost:8000/ with creds: admin:Admin#123 (by default)
+## ⚙️ Configuration
+
+Edit splunk.sh variable for custom config
+
+## 🛠️ Menu Options
+
+* Check Env & Pull Image: Prepares the Docker host and pulls the latest Splunk image.
+
+* Create Container: Standardized docker run with necessary environment variables.
+
+* Import Logs: Interactive flow to copy files into the container and index them immediately.
+
+* Install App: Seamlessly deploys Technology Add-ons (TAs) or Dashboards.
+
+* sUppress SSL Warnings: Fixes CLI certificate errors by modifying server.conf automatically.
+
+* Open Shell: Provides instant access to the container as splunk or other user.
+
+This script is intended for Lab/Test environments. 
+Developed with ❤️ for the Splunk Community.
 
 ## Using WSL2
 
